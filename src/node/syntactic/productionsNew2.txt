@@ -1,0 +1,61 @@
+Program->Declarations
+
+Declarations->Declaration|Declaration Declarations
+
+Declaration->VariableDeclaration|FunctionDeclaration
+
+VariableDeclaration->int ID ;
+
+FunctionDeclaration->int ID ( FormalParamList ) BlockStatement|void ID ( FormalParamList ) BlockStatement
+
+FormalParamList->FormalParams|void
+
+FormalParams->Param|Param , FormalParams
+
+Param->int ID
+
+BlockStatement->{ InnerVariableDeclarations ExpressionStatements }|{ ExpressionStatements }
+
+InnerVariableDeclarations->InnerVariableDeclaration|InnerVariableDeclaration InnerVariableDeclarations
+
+InnerVariableDeclaration->int ID ;
+
+ExpressionStatements->ExpressionStatement|ExpressionStatement ExpressionStatements
+
+ExpressionStatement->IfStatement|WhileStatement|ReturnStatement|AssignStatement
+
+AssignStatement->ID = Expression ;
+
+ReturnStatement->return ;|return Expression ;
+
+WhileStatement->while ( Expression ) M_While BlockStatement
+
+M_While->$
+
+IfStatement->if ( Expression ) M1_If BlockStatement N_If M2_If ElseStatement
+
+M1_If->$
+
+N_If->$
+
+M2_If->$
+
+ElseStatement->$|else BlockStatement
+
+Expression->AddExpression|AddExpression Relop Expression
+
+Relop-><|<=|>|>=|==|!=
+
+AddExpression->Item|Item + AddExpression|Item - AddExpression
+
+Item->Factor|Factor * Item|Factor / Item
+
+Factor->num|( Expression )|CallExpression|ID
+
+CallExpression->ID ( ActualParamList )
+
+ActualParamList->ActualParams|$
+
+ActualParams->Expression|Expression , ActualParams
+
+ID->identifier
